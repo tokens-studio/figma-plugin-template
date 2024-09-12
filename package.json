@@ -1,0 +1,70 @@
+{
+	"name": "@tokens-studio/figma-plugin-template",
+	"version": "0.0.0",
+	"description": "Tokens Studio Figma Plugin starter template",
+	"type": "module",
+	"license": "MIT",
+	"author": "Joren Broekema <joren.broekema@gmail.com>",
+	"repository": "https://github.com/tokens-studio/figma-plugin-template",
+	"scripts": {
+		"build": "rimraf dist && npm run build:ui && npm run build:plugin",
+		"build:ui": "vite build",
+		"build:plugin": "vite build -c vite-plugin.config.mjs",
+		"lint": "npm run lint:eslint && npm run lint:prettier",
+		"lint:eslint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
+		"lint:prettier": "prettier \"**/*.{ts,tsx,json,js,mjs}\" --check",
+		"format": "npm run format:eslint && npm run format:prettier",
+		"format:eslint": " eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
+		"format:prettier": "prettier \"**/*.{ts,tsx,json,js,mjs}\" --write",
+		"watch": "chokidar \"src/**/*\" -c \"npm run build\""
+	},
+	"dependencies": {
+		"lit": "^3.2.0",
+		"style-dictionary": "^4.1.0"
+	},
+	"devDependencies": {
+		"@figma/eslint-plugin-figma-plugins": "*",
+		"@figma/plugin-typings": "*",
+		"@typescript-eslint/eslint-plugin": "^6.12.0",
+		"@typescript-eslint/parser": "^6.12.0",
+		"@vitejs/plugin-react-swc": "^3.7.0",
+		"chokidar-cli": "^3.0.0",
+		"eslint": "^8.54.0",
+		"prettier": "^3.3.3",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.6.2",
+		"vite": "^5.4.4",
+		"vite-plugin-singlefile": "^2.0.2"
+	},
+	"eslintConfig": {
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/recommended",
+			"plugin:@figma/figma-plugins/recommended"
+		],
+		"parser": "@typescript-eslint/parser",
+		"parserOptions": {
+			"project": "./tsconfig.json"
+		},
+		"root": true,
+		"rules": {
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					"argsIgnorePattern": "^_",
+					"varsIgnorePattern": "^_",
+					"caughtErrorsIgnorePattern": "^_"
+				}
+			]
+		}
+	},
+	"prettier": {
+		"singleQuote": true,
+		"jsxSingleQuote": true,
+		"endOfLine": "lf",
+		"useTabs": true,
+		"tabWidth": 2,
+		"trailingComma": "none",
+		"arrowParens": "avoid"
+	}
+}
